@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Cover = ({ img, title, subtitle, buttonText }) => {
   return (
@@ -14,7 +15,9 @@ const Cover = ({ img, title, subtitle, buttonText }) => {
           <h1 className="mb-5 text-5xl font-bold">{title}</h1>
           <p className="mb-5">{subtitle}</p>
           {buttonText && (
-            <button className="btn btn-primary">{buttonText}</button>
+            <Link to="/order">
+              <button className="btn btn-primary">{buttonText}</button>
+            </Link>
           )}
         </div>
       </div>
