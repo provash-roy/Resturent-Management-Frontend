@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import logo from "../../assets/icon/image.png";
+import { HiOutlineShoppingCart } from "react-icons/hi";
+
+import useCart from "../../Hooks/useCart";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const [orders] = useCart();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -14,13 +30,12 @@ const NavBar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
@@ -38,7 +53,9 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to="/">
+          <img className="h-20 object-contain" src={logo} alt="Foodwala Logo" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -50,6 +67,35 @@ const NavBar = () => {
           </li>
           <li>
             <Link to="/order">Order Food</Link>
+          </li>
+
+          {user ? (
+            <>
+              <span>{user.displayName}</span>
+              <button onClick={handleLogOut} className="btn btn-outline ">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+
+              <li>
+                <Link to="/register">Sign Up</Link>
+              </li>
+            </>
+          )}
+
+          <li>
+            <Link to="/dashboard/cart">
+              <button className="btn">
+                <HiOutlineShoppingCart />
+
+                <div className="badge badge-sm">+{orders.length}</div>
+              </button>
+            </Link>
           </li>
         </ul>
       </div>
