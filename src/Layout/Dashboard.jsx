@@ -9,10 +9,11 @@ import {
   FaUtensils,
 } from "react-icons/fa6";
 import { FaHome, FaSearch } from "react-icons/fa";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true; // TODO: Dynamically fetch from backend/auth
-
+  // const [isAdmin] = useAdmin();
+  const isAdmin = true;
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-amber-700 text-white">
@@ -25,7 +26,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/addItem">
+                <NavLink to="/dashboard/addItems">
                   <FaUtensils /> Add Items
                 </NavLink>
               </li>

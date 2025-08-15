@@ -11,6 +11,7 @@ import AllUsers from "../Pages/Dashboard/AllUsers";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../Pages/Dashboard/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
+import AddItems from "../Pages/Dashboard/AddItems";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
             <Cart></Cart>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "addItems",
+        element: <AddItems></AddItems>,
       },
       {
         path: "payment",

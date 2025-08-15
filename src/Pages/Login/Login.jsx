@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import swal from "sweetalert";
+
 
 const Login = () => {
   const { login, loading } = useContext(AuthContext);

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import swal from "sweetalert";
-import axios from "axios";
 import useCart from "../../Hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosSecure } from "../../Hooks/useAxiosSecure";

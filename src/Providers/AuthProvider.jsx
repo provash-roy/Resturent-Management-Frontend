@@ -7,6 +7,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
@@ -39,6 +40,16 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
+      const userInfo = { email: currentUser.email };
+      if (currentUser) {
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("access - token");
+      }
     });
 
     return () => unsubscribe();

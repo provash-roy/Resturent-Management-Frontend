@@ -12,36 +12,58 @@ import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 
 const Menu = () => {
   const [menu, setMenu] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    fetch("http://localhost:5000/menu")
-      .then((res) => res.json())
-      .then((data) => setMenu(data));
+    const fetchMenu = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/menu");
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const data = await res.json();
+        setMenu(data);
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
   }, []);
+
   const offered = menu.filter((item) => item.category === "offered");
   const pizza = menu.filter((item) => item.category === "pizza");
   const salad = menu.filter((item) => item.category === "salad");
   const desserts = menu.filter((item) => item.category === "dessert");
   const soup = menu.filter((item) => item.category === "soup");
 
+  if (loading) return <div className="text-center mt-10">Loading menu...</div>;
+  if (error)
+    return <div className="text-center mt-10 text-red-500">Error: {error}</div>;
+
   return (
-    <div className="">
+    <div>
       <Cover
         img={menuImge}
         title="Our Menu"
         subtitle="Would you like to try a dish?"
       />
-      <div>
-        <SectionTitle
-          heading={"Today's Offer"}
-          subHeading={"Don't Miss"}
-        ></SectionTitle>
-      </div>
+
+      {/* Today's Offer */}
+      <SectionTitle heading="Today's Offer" subHeading="Don't Miss" />
       <div className="grid md:grid-cols-3 gap-7">
-        {offered.map((item) => (
-          <MenuCard key={item._id} item={item}></MenuCard>
-        ))}
+        {offered.length > 0 ? (
+          offered.map((item) => <MenuCard key={item._id} item={item} />)
+        ) : (
+          <p className="text-center col-span-3">No offers available</p>
+        )}
       </div>
 
+      {/* Pizza Section */}
       <Cover
         img={pizzaImg}
         title="Pizza"
@@ -49,10 +71,14 @@ const Menu = () => {
         buttonText="Order Now"
       />
       <div className="grid md:grid-cols-3 gap-7">
-        {pizza.map((item) => (
-          <MenuCard key={item._id} item={item}></MenuCard>
-        ))}
+        {pizza.length > 0 ? (
+          pizza.map((item) => <MenuCard key={item._id} item={item} />)
+        ) : (
+          <p className="text-center col-span-3">No pizza available</p>
+        )}
       </div>
+
+      {/* Salad Section */}
       <Cover
         img={saladImg}
         title="Salad"
@@ -60,10 +86,14 @@ const Menu = () => {
         buttonText="Order Now"
       />
       <div className="grid md:grid-cols-3 gap-7">
-        {salad.map((item) => (
-          <MenuCard key={item._id} item={item}></MenuCard>
-        ))}
+        {salad.length > 0 ? (
+          salad.map((item) => <MenuCard key={item._id} item={item} />)
+        ) : (
+          <p className="text-center col-span-3">No salad available</p>
+        )}
       </div>
+
+      {/* Soup Section */}
       <Cover
         img={soupImg}
         title="Soup"
@@ -71,10 +101,14 @@ const Menu = () => {
         buttonText="Order Now"
       />
       <div className="grid md:grid-cols-3 gap-7">
-        {soup.map((item) => (
-          <MenuCard key={item._id} item={item}></MenuCard>
-        ))}
+        {soup.length > 0 ? (
+          soup.map((item) => <MenuCard key={item._id} item={item} />)
+        ) : (
+          <p className="text-center col-span-3">No soup available</p>
+        )}
       </div>
+
+      {/* Dessert Section */}
       <Cover
         img={desertImg}
         title="Dessert"
@@ -82,10 +116,14 @@ const Menu = () => {
         buttonText="Order Now"
       />
       <div className="grid md:grid-cols-3 gap-7">
-        {desserts.map((item) => (
-          <MenuCard key={item._id} item={item}></MenuCard>
-        ))}
+        {desserts.length > 0 ? (
+          desserts.map((item) => <MenuCard key={item._id} item={item} />)
+        ) : (
+          <p className="text-center col-span-3">No dessert available</p>
+        )}
       </div>
+
+      <Footer />
     </div>
   );
 };
