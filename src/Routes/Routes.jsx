@@ -13,6 +13,7 @@ import Payment from "../Pages/Dashboard/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import AddItems from "../Pages/Dashboard/AddItems";
 import ManageItem from "../Pages/Dashboard/ManageItem";
+import UpdateItem from "../Pages/Dashboard/updateItem";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +60,12 @@ export const router = createBrowserRouter([
       {
         path: "manageItems",
         element: <ManageItem></ManageItem>,
+      },
+      {
+        path: "updateItem/:id",
+        element: <UpdateItem></UpdateItem>,
+        loader: async ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`)
+         
       },
       {
         path: "payment",

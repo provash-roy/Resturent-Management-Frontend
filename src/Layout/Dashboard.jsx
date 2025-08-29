@@ -35,11 +35,7 @@ const Dashboard = () => {
                   <FaList /> Manage Items
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/manageBookings">
-                  <FaBook /> Manage Bookings
-                </NavLink>
-              </li>
+              
               <li>
                 <NavLink to="/dashboard/paymentHistory">
                   <FaList /> Payment History
