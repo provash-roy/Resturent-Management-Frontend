@@ -6,7 +6,6 @@ import pizzaImg from "../../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../../assets/menu/salad-bg.jpg";
 import soupImg from "../../../assets/menu/soup-bg.jpg";
 import desertImg from "../../../assets/menu/dessert-bg.jpeg";
-import PopularMenu from "../../Home/PopularMenu/PopularMenu";
 import MenuCard from "../../../Shared/MenuCard/MenuCard";
 import SectionTitle from "../../../Shared/SectionTitle/SectionTitle";
 
@@ -41,12 +40,23 @@ const Menu = () => {
   const desserts = menu.filter((item) => item.category === "dessert");
   const soup = menu.filter((item) => item.category === "soup");
 
-  if (loading) return <div className="text-center mt-10">Loading menu...</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen text-lg text-gray-600">
+        Loading menu...
+      </div>
+    );
+
   if (error)
-    return <div className="text-center mt-10 text-red-500">Error: {error}</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen text-lg text-red-500">
+        Error: {error}
+      </div>
+    );
 
   return (
     <div>
+      {/* Main Cover */}
       <Cover
         img={menuImge}
         title="Our Menu"
@@ -54,76 +64,94 @@ const Menu = () => {
       />
 
       {/* Today's Offer */}
-      <SectionTitle heading="Today's Offer" subHeading="Don't Miss" />
-      <div className="grid md:grid-cols-3 gap-7">
-        {offered.length > 0 ? (
-          offered.map((item) => <MenuCard key={item._id} item={item} />)
-        ) : (
-          <p className="text-center col-span-3">No offers available</p>
-        )}
-      </div>
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <SectionTitle heading="Today's Offer" subHeading="Don't Miss" />
+        <div className="grid md:grid-cols-3 gap-8 mt-10">
+          {offered.length > 0 ? (
+            offered.map((item) => <MenuCard key={item._id} item={item} />)
+          ) : (
+            <p className="text-center col-span-3 text-gray-500">
+              No offers available
+            </p>
+          )}
+        </div>
+      </section>
 
       {/* Pizza Section */}
       <Cover
         img={pizzaImg}
         title="Pizza"
-        subtitle="Would you like to try a dish?"
+        subtitle="Delicious slices waiting for you"
         buttonText="Order Now"
       />
-      <div className="grid md:grid-cols-3 gap-7">
-        {pizza.length > 0 ? (
-          pizza.map((item) => <MenuCard key={item._id} item={item} />)
-        ) : (
-          <p className="text-center col-span-3">No pizza available</p>
-        )}
-      </div>
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-8">
+          {pizza.length > 0 ? (
+            pizza.map((item) => <MenuCard key={item._id} item={item} />)
+          ) : (
+            <p className="text-center col-span-3 text-gray-500">
+              No pizza available
+            </p>
+          )}
+        </div>
+      </section>
 
       {/* Salad Section */}
       <Cover
         img={saladImg}
         title="Salad"
-        subtitle="Would you like to try a dish?"
+        subtitle="Fresh & healthy for your day"
         buttonText="Order Now"
       />
-      <div className="grid md:grid-cols-3 gap-7">
-        {salad.length > 0 ? (
-          salad.map((item) => <MenuCard key={item._id} item={item} />)
-        ) : (
-          <p className="text-center col-span-3">No salad available</p>
-        )}
-      </div>
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-8">
+          {salad.length > 0 ? (
+            salad.map((item) => <MenuCard key={item._id} item={item} />)
+          ) : (
+            <p className="text-center col-span-3 text-gray-500">
+              No salad available
+            </p>
+          )}
+        </div>
+      </section>
 
       {/* Soup Section */}
       <Cover
         img={soupImg}
         title="Soup"
-        subtitle="Would you like to try a dish?"
+        subtitle="Warm and tasty"
         buttonText="Order Now"
       />
-      <div className="grid md:grid-cols-3 gap-7">
-        {soup.length > 0 ? (
-          soup.map((item) => <MenuCard key={item._id} item={item} />)
-        ) : (
-          <p className="text-center col-span-3">No soup available</p>
-        )}
-      </div>
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-8">
+          {soup.length > 0 ? (
+            soup.map((item) => <MenuCard key={item._id} item={item} />)
+          ) : (
+            <p className="text-center col-span-3 text-gray-500">
+              No soup available
+            </p>
+          )}
+        </div>
+      </section>
 
       {/* Dessert Section */}
       <Cover
         img={desertImg}
         title="Dessert"
-        subtitle="Would you like to try a dish?"
+        subtitle="Sweet treats to end your meal"
         buttonText="Order Now"
       />
-      <div className="grid md:grid-cols-3 gap-7">
-        {desserts.length > 0 ? (
-          desserts.map((item) => <MenuCard key={item._id} item={item} />)
-        ) : (
-          <p className="text-center col-span-3">No dessert available</p>
-        )}
-      </div>
-
-      <Footer />
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-8">
+          {desserts.length > 0 ? (
+            desserts.map((item) => <MenuCard key={item._id} item={item} />)
+          ) : (
+            <p className="text-center col-span-3 text-gray-500">
+              No dessert available
+            </p>
+          )}
+        </div>
+      </section>
     </div>
   );
 };

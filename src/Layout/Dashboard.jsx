@@ -12,8 +12,12 @@ import { FaHome, FaSearch } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
-  // const [isAdmin] = useAdmin();
-  const isAdmin = true;
+  const [isAdmin, isLoading] = useAdmin();
+
+  if (isLoading) {
+    return <p className="p-8">Loading dashboard...</p>;
+  }
+  
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-amber-700 text-white">
@@ -35,12 +39,12 @@ const Dashboard = () => {
                   <FaList /> Manage Items
                 </NavLink>
               </li>
-              
               <li>
-                <NavLink to="/dashboard/paymentHistory">
-                  <FaList /> Payment History
+                <NavLink to="/dashboard/cart">
+                  <FaCartShopping /> My Cart
                 </NavLink>
               </li>
+
               <li>
                 <NavLink to="/dashboard/users">
                   <FaUsers /> All Users
@@ -54,20 +58,15 @@ const Dashboard = () => {
                   <FaHome /> User Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/reservation">
-                  <FaCalendar /> Reservation
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to="/dashboard/cart">
                   <FaCartShopping /> My Cart
                 </NavLink>
               </li>
-
               <li>
-                <NavLink to="/dashboard/myBookings">
-                  <FaList /> My Bookings
+                <NavLink to="/dashboard/paymentHistory">
+                  <FaList /> Payment History
                 </NavLink>
               </li>
             </>

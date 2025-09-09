@@ -1,18 +1,20 @@
-import React from "react";
-import img1 from "../../../assets/home/01.jpg";
-// import img1 from "../../../assets/home/07.jpeg";
-// import img2 from "../../../assets/home/08.jpg";
-import img2 from "../../../assets/home/02.jpg";
+//import img2 from "../../../assets/home/provash.png";
+//import img1 from "../../../assets/home/09.png";
+//import img2 from "../../../assets/home/08.jpg";
+import img1 from "../../../assets/home/resturant.png";
+import img2 from "../../../assets/home/02.png";
 import img3 from "../../../assets/home/03.png";
-import img4 from "../../../assets/home/04.jpg";
-import img5 from "../../../assets/home/05.png";
-import img6 from "../../../assets/home/06.png";
+import img4 from "../../../assets/home/04.png";
 
 const Banner = () => {
   return (
     <div className="carousel w-full">
-      <div id="slide1" className="carousel-item relative w-full">
-        <img className="" src={img1} alt="" />
+      <div id="slide1" className="carousel-item relative  w-full ">
+        <img
+          className="w-full  h-[80vh] object-cover rounded-lg"
+          src={img1}
+          alt=""
+        />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide6" className="btn btn-circle">
             ❮
@@ -23,7 +25,11 @@ const Banner = () => {
         </div>
       </div>
       <div id="slide2" className="carousel-item relative w-full">
-        <img src={img2} alt="" />
+        <img
+          className="w-full  h-[80vh] object-cover rounded-lg"
+          src={img2}
+          alt=""
+        />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide1" className="btn btn-circle">
             ❮
@@ -34,7 +40,11 @@ const Banner = () => {
         </div>
       </div>
       <div id="slide3" className="carousel-item relative w-full">
-        <img src={img3} alt="" />{" "}
+        <img
+          className="w-full  h-[80vh] object-cover rounded-lg"
+          src={img3}
+          alt=""
+        />{" "}
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide2" className="btn btn-circle">
             ❮
@@ -45,31 +55,13 @@ const Banner = () => {
         </div>
       </div>
       <div id="slide4" className="carousel-item relative w-full">
-        <img src={img4} alt="" />
+        <img
+          className="w-full  h-[80vh] object-cover rounded-lg"
+          src={img4}
+          alt=""
+        />
         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
           <a href="#slide3" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide5" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-      </div>
-      <div id="slide5" className="carousel-item relative w-full">
-        <img src={img5} alt="" />
-        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-          <a href="#slide4" className="btn btn-circle">
-            ❮
-          </a>
-          <a href="#slide6" className="btn btn-circle">
-            ❯
-          </a>
-        </div>
-      </div>
-      <div id="slide6" className="carousel-item relative w-full">
-        <img src={img6} alt="" />
-        <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-          <a href="#slide5" className="btn btn-circle">
             ❮
           </a>
           <a href="#slide1" className="btn btn-circle">

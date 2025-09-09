@@ -3,109 +3,55 @@ import OrderCoverImg from "../../assets/shop/banner2.jpg";
 import Cover from "../../Shared/Cover/Cover";
 import FoodCard from "../../Shared/FoodCard/FoodCard";
 
+const categories = ["salad", "pizza", "soup", "dessert", "drinks"];
+
 const Order = () => {
-  const [activeTabIndex, setActiveTabIndex] = useState(0); // 0 = Tab 1, ..., 4 = Tab 5
-
-  const handleTabClick = (index) => {
-    setActiveTabIndex(index);
-  };
-
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [menu, setMenu] = useState([]);
+
   useEffect(() => {
-    fetch("menu.json")
+    fetch("http://localhost:5000/menu")
       .then((res) => res.json())
       .then((data) => setMenu(data));
   }, []);
 
-
-  const pizza = menu.filter((item) => item.category === "pizza");
-  const salad = menu.filter((item) => item.category === "salad");
-  const desserts = menu.filter((item) => item.category === "dessert");
-  const soup = menu.filter((item) => item.category === "soup");
-  const drinks = menu.filter((item) => item.category === "drinks");
+  const filteredMenu = categories.map((cat) =>
+    menu.filter((item) => item.category === cat)
+  );
 
   return (
     <div>
-      <Cover img={OrderCoverImg}></Cover>
+      {/* Cover Section */}
+      <Cover
+        title={"Our Shop"}
+        subtitle={"Would you Like to Try a Dish"}
+        img={OrderCoverImg}
+      />
 
+      {/* Tabs */}
       <div
         role="tablist"
-        className="tabs tabs-border flex flex-wrap justify-center"
+        className="tabs tabs-border flex flex-wrap justify-center mt-4"
       >
-        <a
-          role="tab"
-          className={`tab ${activeTabIndex === 0 ? "tab-active" : ""}`}
-          onClick={() => handleTabClick(0)}
-        >
-          Salad
-        </a>
-        <a
-          role="tab"
-          className={`tab ${activeTabIndex === 1 ? "tab-active" : ""}`}
-          onClick={() => handleTabClick(1)}
-        >
-          Pizza
-        </a>
-        <a
-          role="tab"
-          className={`tab ${activeTabIndex === 2 ? "tab-active" : ""}`}
-          onClick={() => handleTabClick(2)}
-        >
-          Soups
-        </a>
-        <a
-          role="tab"
-          className={`tab ${activeTabIndex === 3 ? "tab-active" : ""}`}
-          onClick={() => handleTabClick(3)}
-        >
-          Desserts
-        </a>
-        <a
-          role="tab"
-          className={`tab ${activeTabIndex === 4 ? "tab-active" : ""}`}
-          onClick={() => handleTabClick(4)}
-        >
-          Drinks
-        </a>
+        {categories.map((cat, index) => (
+          <button
+            key={index}
+            role="tab"
+            className={`tab ${activeTabIndex === index ? "tab-active" : ""}`}
+            onClick={() => setActiveTabIndex(index)}
+          >
+            {cat.charAt(0).toUpperCase() + cat.slice(1)}
+          </button>
+        ))}
       </div>
 
-      <div className="mt-4 text-center">
-        {activeTabIndex === 0 && (
-          <div className="grid md:grid-cols-3 gap-7">
-            {salad.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
-        )}
-        {activeTabIndex === 1 && (
-          <div className="grid md:grid-cols-3 gap-7">
-            {pizza.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
-        )}
-        {activeTabIndex === 2 && (
-          <div className="grid md:grid-cols-3 gap-7">
-            {soup.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
-        )}
-        {activeTabIndex === 3 && (
-          <div className="grid md:grid-cols-3 gap-7">
-            {desserts.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
-        )}
-        {activeTabIndex === 4 && (
-          <div className="grid md:grid-cols-3 gap-7">
-            {drinks.map((item) => (
-              <FoodCard key={item._id} item={item}></FoodCard>
-            ))}
-          </div>
-        )}
-        {/* {activeTabIndex === 4 && <p>Content of Tab 5</p>} */}
+      {/* Tab Content */}
+      <div className="mt-6 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          {filteredMenu[activeTabIndex].map((item) => (
+            <FoodCard key={item._id} item={item} />
+          ))}
+        </div>
       </div>
     </div>
   );

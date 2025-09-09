@@ -89,7 +89,8 @@ const Login = () => {
                 id="email"
                 placeholder="you@example.com"
                 required
-                className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
+                //className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
+                className="p-3 rounded-2xl w-full focus:outline-none focus:ring-2 focus:ring-orange-500 "
               />
               <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
                 <svg
@@ -122,7 +123,7 @@ const Login = () => {
                 id="password"
                 placeholder="••••••••"
                 required
-                className="input input-bordered w-full pr-20 focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
+                className="p-3 rounded-2xl w-full pr-20 focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
               />
               <button
                 type="button"
@@ -139,19 +140,6 @@ const Login = () => {
                 <span>{error}</span>
               </div>
             )}
-
-            {/* Extra actions */}
-            <div className="flex items-center justify-between mt-2">
-              <label className="label cursor-pointer gap-2">
-                <input type="checkbox" className="checkbox checkbox-sm" />
-                <span className="label-text text-sm text-black">
-                  Remember me
-                </span>
-              </label>
-              <a className="link link-hover text-sm text-orange-700">
-                Forgot password?
-              </a>
-            </div>
 
             {/* Submit */}
             <button

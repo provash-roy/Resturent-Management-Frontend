@@ -43,7 +43,9 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/">Home</Link>
+              <Link className="font-bold" to="/">
+                Home
+              </Link>
             </li>
             <li>
               <Link to="/menu">Our Menu</Link>
@@ -60,47 +62,59 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <Link className="font-bold" to="/">
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/menu">Our Menu</Link>
+            <Link className="font-bold" to="/dashboard/cart">
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link to="/order">Order Food</Link>
+            <Link className="font-bold" to="/menu">
+              Our Menu
+            </Link>
+          </li>
+          <li>
+            <Link className="font-bold" to="/order">
+              Order Food
+            </Link>
+          </li>
+
+          <li>
+            <div>
+              <HiOutlineShoppingCart />
+              <div className="badge badge-sm">+{orders.length}</div>
+            </div>
           </li>
 
           {user ? (
             <>
               <span>{user.displayName}</span>
-              <button onClick={handleLogOut} className="btn btn-outline ">
+              <button
+                onClick={handleLogOut}
+                className="btn btn-outline font-bold"
+              >
                 Logout
               </button>
             </>
           ) : (
             <>
               <li>
-                <Link to="/login">Login</Link>
+                <Link className="font-bold" to="/login">
+                  Login
+                </Link>
               </li>
 
               <li>
-                <Link to="/register">Sign Up</Link>
+                <Link className="font-bold" to="/register">
+                  Sign Up
+                </Link>
               </li>
             </>
           )}
-
-          <li>
-            <Link to="/dashboard/cart">
-              <button className="btn">
-                <HiOutlineShoppingCart />
-
-                <div className="badge badge-sm">+{orders.length}</div>
-              </button>
-            </Link>
-          </li>
         </ul>
-      </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
       </div>
     </div>
   );

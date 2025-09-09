@@ -5,7 +5,7 @@ import MenuCard from "../../../Shared/MenuCard/MenuCard";
 const PopularMenu = () => {
   const [menu, setMenu] = useState([]);
   useEffect(() => {
-    fetch("menu.json")
+    fetch("http://localhost:5000/menu")
       .then((res) => res.json())
       .then((data) => {
         const popularItems = data.filter((item) => item.category === "popular");
@@ -20,7 +20,7 @@ const PopularMenu = () => {
           subHeading={"Our Popular Menu"}
         ></SectionTitle>
 
-        <div className="grid md:grid-cols-3 gap-7">
+        <div className="grid md:grid-cols-4 gap-7">
           {menu.map((item) => (
             <MenuCard key={item._id} item={item}></MenuCard>
           ))}
