@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import swal from "sweetalert";
-
 
 const Login = () => {
   const { login, loading } = useContext(AuthContext);
@@ -39,7 +38,7 @@ const Login = () => {
       className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-white text-black"
     >
       <div className="max-w-6xl mx-auto px-4 py-10 lg:py-16 grid lg:grid-cols-2 gap-10 items-center">
-        {/* Left side - copy/branding */}
+        {/* Left side */}
         <div className="hidden lg:block">
           <h1 className="text-4xl font-extrabold tracking-tight">
             Welcome Back<span className="text-orange-600">.</span>
@@ -68,7 +67,6 @@ const Login = () => {
           className="card bg-white/90 backdrop-blur-xl shadow-2xl ring-1 ring-orange-100 w-full max-w-md mx-auto rounded-2xl"
         >
           <div className="card-body text-black">
-            {/* Logo/Badge */}
             <div className="mx-auto -mt-12 mb-2 h-20 w-20 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center shadow-lg">
               <span className="text-white text-2xl font-bold">LOG</span>
             </div>
@@ -89,8 +87,7 @@ const Login = () => {
                 id="email"
                 placeholder="you@example.com"
                 required
-                //className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
-                className="p-3 rounded-2xl w-full focus:outline-none focus:ring-2 focus:ring-orange-500 "
+                className="p-3 rounded-2xl w-full focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
               <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-500">
                 <svg
@@ -156,14 +153,25 @@ const Login = () => {
             {/* Divider */}
             <div className="divider text-gray-500">OR</div>
 
+            {/* Google Login */}
             <button
               type="button"
-              //  onClick={handleGoogleSignIn}
               className="w-full flex items-center justify-center gap-3 border border-orange-400 py-2 rounded-lg text-orange-600 font-semibold hover:bg-orange-100 transition duration-300"
             >
               <FcGoogle className="text-2xl" />
               Continue with Google
             </button>
+
+            {/* ✅ Register link below Google button */}
+            <p className="text-center text-sm text-gray-700 mt-4">
+              Don’t have an account?{" "}
+              <Link
+                to="/register"
+                className="text-orange-600 font-semibold hover:underline"
+              >
+                Register
+              </Link>
+            </p>
           </div>
         </form>
       </div>

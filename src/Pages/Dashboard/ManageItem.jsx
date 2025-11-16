@@ -6,7 +6,8 @@ import swal from "sweetalert";
 import { Link } from "react-router-dom";
 
 const ManageItem = () => {
-  const [menu, refetch] = useMenu();
+  const [menu = [], refetch] = useMenu();
+
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { FaUsers } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import swal from "sweetalert";
 
 const AllUsers = () => {
@@ -22,7 +23,7 @@ const AllUsers = () => {
         refetch();
       }
     } catch (error) {
-      swal("Error!", "Failed to make admin.", "error");
+      swal("Error!", "Failed to make admin.", error);
     }
   };
 
@@ -46,7 +47,7 @@ const AllUsers = () => {
             refetch();
           }
         } catch (error) {
-          swal("Error!", "Failed to delete item.", "error");
+          swal("Error!", "Failed to delete item.", error);
         }
       }
     });
@@ -95,6 +96,15 @@ const AllUsers = () => {
                   >
                     Remove
                   </button>
+                </td>
+
+                <td>
+                  <Link
+                    to={`/dashboard/myorders/${user.email}`}
+                    className="btn btn-xs bg-blue-600 text-white ml-2"
+                  >
+                    View Orders
+                  </Link>
                 </td>
               </tr>
             ))}

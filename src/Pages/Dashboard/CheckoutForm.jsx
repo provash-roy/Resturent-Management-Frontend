@@ -52,8 +52,9 @@ const CheckoutForm = () => {
         alert(confirmResult.error.message);
       } else if (confirmResult.paymentIntent.status === "succeeded") {
         alert("Payment Successful!");
-
+        
         const payment = {
+          name: user.displayName,
           email: user.email,
           price: totalPrice,
           transactionId: paymentMethod.id,

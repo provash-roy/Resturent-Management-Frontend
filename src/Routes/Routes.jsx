@@ -14,6 +14,17 @@ import PaymentHistory from "../Pages/Dashboard/PaymentHistory";
 import AddItems from "../Pages/Dashboard/AddItems";
 import ManageItem from "../Pages/Dashboard/ManageItem";
 import UpdateItem from "../Pages/Dashboard/updateItem";
+import AllOrders from "../Pages/Dashboard/AllOrders";
+import ManagePayment from "../Pages/Dashboard/ManagePayment";
+import MyOrders from "../Pages/Dashboard/MyOrders";
+import AdminHome from "../Pages/Dashboard/AdminHome";
+import UserHome from "../Pages/Dashboard/UserHome";
+import CustomersWhoOrdered from "../Pages/Dashboard/CustomersWhoOrdered";
+import UserOrders from "../Pages/Dashboard/UserOrders";
+import Footer from "../Shared/Footer/Footer";
+import Profile from "../Pages/Dashboard/Profile";
+import ContactInfo from "../Pages/Dashboard/ContactInfo";
+import UserDetails from "../Pages/Dashboard/UserDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -39,12 +50,33 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <SingUp></SingUp>,
       },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "contact",
+        element: <ContactInfo></ContactInfo>,
+      },
     ],
   },
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      {
+        path: "/dashboard/adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+      {
+        path: "/dashboard/userHome",
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: "/dashboard/user/:email",
+        element: <UserDetails></UserDetails>,
+      },
+
       {
         path: "cart",
         element: (
@@ -58,22 +90,44 @@ export const router = createBrowserRouter([
         element: <AddItems></AddItems>,
       },
       {
+        path: "allOrders",
+        element: <AllOrders></AllOrders>,
+      },
+      {
+        path: "customersOrder/:productName",
+        element: <CustomersWhoOrdered></CustomersWhoOrdered>,
+      },
+
+      {
         path: "manageItems",
         element: <ManageItem></ManageItem>,
       },
       {
+        path: "managePayment",
+        element: <ManagePayment></ManagePayment>,
+      },
+      {
         path: "updateItem/:id",
         element: <UpdateItem></UpdateItem>,
-        loader: async ({ params }) => fetch(`http://localhost:5000/menu/${params.id}`)
-         
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/menu/${params.id}`),
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
       },
       {
         path: "payment",
         element: <Payment></Payment>,
       },
+
       {
-        path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        path: "myorders",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "myorders/:email",
+        element: <UserOrders></UserOrders>,
       },
       {
         path: "users",

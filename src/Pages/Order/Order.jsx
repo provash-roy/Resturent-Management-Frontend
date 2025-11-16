@@ -3,7 +3,7 @@ import OrderCoverImg from "../../assets/shop/banner2.jpg";
 import Cover from "../../Shared/Cover/Cover";
 import FoodCard from "../../Shared/FoodCard/FoodCard";
 
-const categories = ["salad", "pizza", "soup", "dessert", "drinks"];
+const categories = ["salad", "pizza", "soups", "dessert", "drink"];
 
 const Order = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);

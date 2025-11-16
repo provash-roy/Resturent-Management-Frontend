@@ -28,9 +28,8 @@ const AddItems = () => {
         };
 
         const res = await axiosPublic.post("/menu", newItem);
-        if (res.data.insertedId) {
+        if (res.status === 201) {
           alert("Item added successfully!");
-          console.log("item added succesfully");
           reset();
         }
       }
@@ -79,6 +78,9 @@ const AddItems = () => {
                 <option value="pizza">Pizza</option>
                 <option value="soups">Soups</option>
                 <option value="drink">Drinks</option>
+                <option value="dessert">Dessert</option>
+                <option value="popular">Popular</option>
+                <option value="offerd">Offerd</option>
               </select>
             </div>
             <div className="w-1/2">

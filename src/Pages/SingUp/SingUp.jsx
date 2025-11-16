@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // ✅ Link added
 
 const SignUp = () => {
   const { register, googleSignIn, loading } = useContext(AuthContext);
@@ -14,8 +14,8 @@ const SignUp = () => {
     setError("");
 
     const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
     const password = form.password.value;
 
     if (password.length < 6) {
@@ -52,7 +52,6 @@ const SignUp = () => {
         const user = result.user;
         console.log("Google login success:", user);
 
-        // Save user info to DB if needed
         axios
           .post("http://localhost:5000/users", {
             name: user.displayName,
@@ -60,6 +59,7 @@ const SignUp = () => {
           })
           .then(() => {
             console.log("Google user saved to DB");
+            navigate("/");
           })
           .catch((err) => {
             console.error("Google user save failed:", err);
@@ -96,7 +96,7 @@ const SignUp = () => {
               name="name"
               placeholder="Your Name"
               required
-              className="w-full px-4 py-2  rounded-lg  focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
+              className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
             />
           </div>
 
@@ -107,7 +107,7 @@ const SignUp = () => {
               name="email"
               placeholder="you@example.com"
               required
-              className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
+              className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
             />
           </div>
 
@@ -118,7 +118,7 @@ const SignUp = () => {
               name="password"
               placeholder="******"
               required
-              className="w-full px-4 py-2  rounded-lg  focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
+              className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-black"
             />
           </div>
 
@@ -144,6 +144,17 @@ const SignUp = () => {
             <FcGoogle className="text-2xl" />
             Continue with Google
           </button>
+
+          {/* ✅ Login link below Google button */}
+          <p className="text-center text-sm text-gray-700 mt-4">
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-orange-600 font-semibold hover:underline"
+            >
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>

@@ -38,7 +38,7 @@ const Menu = () => {
   const pizza = menu.filter((item) => item.category === "pizza");
   const salad = menu.filter((item) => item.category === "salad");
   const desserts = menu.filter((item) => item.category === "dessert");
-  const soup = menu.filter((item) => item.category === "soup");
+  const soup = menu.filter((item) => item.category === "soups");
 
   if (loading)
     return (

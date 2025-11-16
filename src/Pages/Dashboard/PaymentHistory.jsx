@@ -7,11 +7,13 @@ const PaymentHistory = () => {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
+    if (!user?.email) return;
+
     axios
       .get(`http://localhost:5000/payments/${user.email}`)
       .then((res) => setPayments(res.data))
       .catch((err) => console.error(err));
-  }, [user.email]);
+  }, [user]);
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
@@ -37,14 +39,14 @@ const PaymentHistory = () => {
                   key={item._id}
                   className="border-b hover:bg-orange-50 transition-all"
                 >
-                  <td className="p-3  text-orange-600">{index + 1}</td>
+                  <td className="p-3 text-orange-600">{index + 1}</td>
                   <td className="p-3 text-orange-600 font-semibold">
-                    ${item.price.toFixed(2)}
+                    ${Number(item.price).toFixed(2)}
                   </td>
-                  <td className="p-3  text-orange-600 font-mono">
+                  <td className="p-3 text-orange-600 font-mono">
                     {item.transactionId}
                   </td>
-                  <td className="p-3  text-orange-600">
+                  <td className="p-3 text-orange-600">
                     {new Date(item.date).toLocaleDateString()}
                   </td>
                   <td

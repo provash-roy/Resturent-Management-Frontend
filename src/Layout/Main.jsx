@@ -4,13 +4,19 @@ import Footer from "../Shared/Footer/Footer";
 
 const Main = () => {
   const location = useLocation();
-  const noHeaderFooter = location.pathname === "/login" || location.pathname === "/register";
+
+  // যেসব পেজে header/footer hide করতে চাও
+  const noHeaderFooter = ["/login", "/register", "/contact"].includes(
+    location.pathname
+  );
 
   return (
     <div>
-      {noHeaderFooter || <NavBar></NavBar>}
-      <Outlet></Outlet>
-      {noHeaderFooter || <Footer></Footer>}
+      {!noHeaderFooter && <NavBar />}
+
+      <Outlet />
+
+      {!noHeaderFooter && <Footer />}
     </div>
   );
 };

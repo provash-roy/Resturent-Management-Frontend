@@ -79,7 +79,7 @@ const UpdateItem = () => {
                 </legend>
                 <select
                   {...register("Category", { required: true })}
-                  defaultValue={item.category}
+                  defaultValue={item?.category}
                   className="select select-bordered w-full border-orange-300 focus:border-orange-500"
                 >
                   <option value="" disabled>
@@ -98,7 +98,7 @@ const UpdateItem = () => {
                   </legend>
                   <input
                     {...register("Price", { required: true })}
-                    defaultValue={item.price}
+                    defaultValue={item?.price}
                     type="number"
                     className="input input-bordered w-full border-orange-300 focus:border-orange-500"
                     placeholder="Enter Price"

@@ -1,6 +1,3 @@
-//import img2 from "../../../assets/home/provash.png";
-//import img1 from "../../../assets/home/09.png";
-//import img2 from "../../../assets/home/08.jpg";
 import img1 from "../../../assets/home/resturant.png";
 import img2 from "../../../assets/home/02.png";
 import img3 from "../../../assets/home/03.png";

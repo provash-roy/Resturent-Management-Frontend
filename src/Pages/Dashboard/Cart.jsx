@@ -63,6 +63,7 @@ const Cart = () => {
               <th className="p-3 text-left">Category</th>
               <th className="p-3 text-left">Price</th>
               <th className="p-3 text-left">Action</th>
+              <th className="p-3 text-left">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -71,7 +72,7 @@ const Cart = () => {
                 key={item._id}
                 className="border-b hover:bg-orange-50 transition-all"
               >
-                <td className="p-3">{index + 1}</td>
+                <td className="p-3  text-orange-600">{index + 1}</td>
                 <td className="p-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
@@ -79,8 +80,12 @@ const Cart = () => {
                     </div>
                   </div>
                 </td>
-                <td className="p-3 font-medium">{item.name}</td>
-                <td className="p-3 capitalize">{item.category}</td>
+                <td className="p-3 font-medium  text-orange-600">
+                  {item.name}
+                </td>
+                <td className="p-3 capitalize  text-orange-600">
+                  {item.category}
+                </td>
                 <td className="p-3 text-orange-600 font-semibold">
                   ${item.price}
                 </td>
@@ -91,6 +96,9 @@ const Cart = () => {
                   >
                     Remove
                   </button>
+                </td>
+                <td className="p-3 capitalize font-semibold text-green-600">
+                  {item.status}
                 </td>
               </tr>
             ))}
