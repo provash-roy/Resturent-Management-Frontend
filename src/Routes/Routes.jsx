@@ -21,7 +21,6 @@ import AdminHome from "../Pages/Dashboard/AdminHome";
 import UserHome from "../Pages/Dashboard/UserHome";
 import CustomersWhoOrdered from "../Pages/Dashboard/CustomersWhoOrdered";
 import UserOrders from "../Pages/Dashboard/UserOrders";
-import Footer from "../Shared/Footer/Footer";
 import Profile from "../Pages/Dashboard/Profile";
 import ContactInfo from "../Pages/Dashboard/ContactInfo";
 import UserDetails from "../Pages/Dashboard/UserDetails";
@@ -31,27 +30,27 @@ export const router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path: "/",
+        index: true,
         element: <Home></Home>,
       },
       {
-        path: "/menu",
+        path: "menu",
         element: <Menu></Menu>,
       },
       {
-        path: "/order",
+        path: "order",
         element: <Order></Order>,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login></Login>,
       },
       {
-        path: "/register",
+        path: "register",
         element: <SingUp></SingUp>,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <Profile />,
       },
       {
@@ -61,19 +60,25 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: "/dashboard/adminHome",
-        element: <AdminHome></AdminHome>,
-      },
-      {
-        path: "/dashboard/userHome",
+        index: true,
         element: <UserHome></UserHome>,
       },
       {
-        path: "/dashboard/user/:email",
+        path: "adminHome",
+        element: <AdminHome></AdminHome>,
+      },
+
+      {
+        path: "userHome",
+
+        element: <UserHome></UserHome>,
+      },
+      {
+        path: "user/:email",
         element: <UserDetails></UserDetails>,
       },
 

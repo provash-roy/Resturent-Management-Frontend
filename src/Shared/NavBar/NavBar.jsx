@@ -49,13 +49,13 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
-              <Link className="font-bold" to="/menu">
+              <Link className="font-bold" to="menu">
                 Menu
               </Link>
             </li>
             {!isAdmin && (
               <li>
-                <Link className="font-bold" to="/order">
+                <Link className="font-bold" to="order">
                   Order Food
                 </Link>
               </li>
@@ -76,25 +76,25 @@ const NavBar = () => {
             </Link>
           </li>
           <li className="mx-2">
-            <Link className="font-bold" to="/dashboard/cart">
+            <Link className="font-bold" to="/dashboard">
               Dashboard
             </Link>
           </li>
           <li className="mx-2">
-            <Link className="font-bold" to="/menu">
+            <Link className="font-bold" to="menu">
               Menu
             </Link>
           </li>
           {!isAdmin && (
             <li>
-              <Link to="/order" className="font-bold">
+              <Link to="order" className="font-bold">
                 Order Food
               </Link>
             </li>
           )}
           {!isAdmin && (
             <li>
-              <Link to="/dashboard/cart">
+              <Link to="/dashboard">
                 <button className="btn">
                   <HiOutlineShoppingCart />
 

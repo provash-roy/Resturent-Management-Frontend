@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import {
   FaBook,
   FaCalendar,
@@ -10,25 +10,9 @@ import {
 } from "react-icons/fa6";
 import { FaHome, FaSearch } from "react-icons/fa";
 import useAdmin from "../Hooks/useAdmin";
-import { useEffect } from "react";
 
 const Dashboard = () => {
   const [isAdmin, isLoading] = useAdmin();
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  //Redirect logic (only when user visits /dashboard root)
-  useEffect(() => {
-    if (!isLoading) {
-      if (location.pathname === "/dashboard") {
-        if (isAdmin) {
-          navigate("/dashboard/adminHome");
-        } else {
-          navigate("/dashboard/userHome");
-        }
-      }
-    }
-  }, [isAdmin, isLoading, location.pathname, navigate]);
 
   if (isLoading) {
     return <p className="p-8">Loading dashboard...</p>;
@@ -42,64 +26,63 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/adminHome">
+                <NavLink to="adminHome">
                   <FaHome /> Admin Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/addItems">
+                <NavLink to="addItems">
                   <FaUtensils /> Add Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageItems">
+                <NavLink to="manageItems">
                   <FaList /> Manage Items
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/users">
+                <NavLink to="users">
                   <FaUsers /> All Users
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/allOrders">
+                <NavLink to="allOrders">
                   <FaBook /> All Orders
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/managePayment">
-                  <FaCalendar /> All Payment
+                <NavLink to="managePayment">
+                  <FaCalendar /> Payments
                 </NavLink>
               </li>
             </>
           ) : (
             <>
               <li>
-                <NavLink to="/dashboard/userHome">
+                <NavLink to="userHome">
                   <FaHome /> User Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/cart">
+                <NavLink to="cart">
                   <FaCartShopping /> My Cart
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/myorders">
-                  <FaCartShopping /> My Orders
+                <NavLink to="my-orders">
+                  <FaList /> My Orders
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/paymentHistory">
-                  <FaList /> Payment History
+                <NavLink to="paymentHistory">
+                  <FaCalendar /> Payments
                 </NavLink>
               </li>
             </>
           )}
 
-          <div className="divider"></div>
+          <div className="divider" />
 
-          {/* Common Links */}
           <li>
             <NavLink to="/">
               <FaHome /> Home
@@ -118,7 +101,7 @@ const Dashboard = () => {
         </ul>
       </div>
 
-      {/* Main Content */}
+      {/* Content */}
       <div className="flex-1 p-8">
         <Outlet />
       </div>
