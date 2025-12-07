@@ -24,30 +24,31 @@ import UserOrders from "../Pages/Dashboard/UserOrders";
 import Profile from "../Pages/Dashboard/Profile";
 import ContactInfo from "../Pages/Dashboard/ContactInfo";
 import UserDetails from "../Pages/Dashboard/UserDetails";
+import DashboardRedirect from "./components/DashboardRedirect";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
+    element: <Main />,
     children: [
       {
         index: true,
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: "menu",
-        element: <Menu></Menu>,
+        element: <Menu />,
       },
       {
         path: "order",
-        element: <Order></Order>,
+        element: <Order />,
       },
       {
         path: "login",
-        element: <Login></Login>,
+        element: <Login />,
       },
       {
         path: "register",
-        element: <SingUp></SingUp>,
+        element: <SingUp />,
       },
       {
         path: "profile",
@@ -55,92 +56,89 @@ export const router = createBrowserRouter([
       },
       {
         path: "contact",
-        element: <ContactInfo></ContactInfo>,
+        element: <ContactInfo />,
       },
     ],
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
-        element: <UserHome></UserHome>,
+        element: <DashboardRedirect />,
       },
-      {
-        path: "adminHome",
-        element: <AdminHome></AdminHome>,
-      },
-
       {
         path: "userHome",
 
-        element: <UserHome></UserHome>,
+        element: <UserHome />,
       },
+
       {
         path: "user/:email",
-        element: <UserDetails></UserDetails>,
+        element: <UserDetails />,
       },
 
       {
         path: "cart",
-        element: (
-          <PrivateRoute>
-            <Cart></Cart>
-          </PrivateRoute>
-        ),
+        element: <Cart />,
+      },
+
+      {
+        path: "adminHome",
+        element: <AdminHome />,
       },
       {
         path: "addItems",
-        element: <AddItems></AddItems>,
+        element: <AddItems />,
       },
       {
         path: "allOrders",
-        element: <AllOrders></AllOrders>,
+        element: <AllOrders />,
       },
       {
         path: "customersOrder/:productName",
-        element: <CustomersWhoOrdered></CustomersWhoOrdered>,
+        element: <CustomersWhoOrdered />,
       },
 
       {
         path: "manageItems",
-        element: <ManageItem></ManageItem>,
+        element: <ManageItem />,
       },
       {
         path: "managePayment",
-        element: <ManagePayment></ManagePayment>,
+        element: <ManagePayment />,
       },
       {
         path: "updateItem/:id",
-        element: <UpdateItem></UpdateItem>,
+        element: <UpdateItem />,
         loader: async ({ params }) =>
           fetch(`http://localhost:5000/menu/${params.id}`),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        element: <PaymentHistory />,
       },
       {
         path: "payment",
-        element: <Payment></Payment>,
+        element: <Payment />,
       },
 
       {
         path: "myorders",
-        element: <MyOrders></MyOrders>,
+        element: <MyOrders />,
       },
       {
         path: "myorders/:email",
-        element: <UserOrders></UserOrders>,
+        element: <UserOrders />,
       },
       {
         path: "users",
-        element: (
-          <PrivateRoute>
-            <AllUsers></AllUsers>
-          </PrivateRoute>
-        ),
+        element: <AllUsers />,
       },
     ],
   },
